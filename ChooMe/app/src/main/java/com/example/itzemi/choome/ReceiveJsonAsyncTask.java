@@ -1,4 +1,4 @@
-package MaikinngSoceFolder;
+package com.example.itzemi.choome;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -14,11 +14,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static android.util.Log.d;
+
 /**
  * Created by seita on 2016/10/20.
  */
 
-public class ReceiveJsonAsyncTask extends AsyncTask <Void,Void,JSONObject>{
+public class ReceiveJsonAsyncTask extends AsyncTask <Object,Void,JSONObject>{
     private URL url;    //接続するURL
     private StringBuilder result = new StringBuilder(); //JSONにする前の文字列を保存するためのStringBuilder
     private TextView mTextView = null;  //MainActivityのTextView
@@ -36,7 +38,7 @@ public class ReceiveJsonAsyncTask extends AsyncTask <Void,Void,JSONObject>{
 
     //非同期処理(メソッド)
     @Override
-    protected JSONObject doInBackground(Void... params) {
+    protected JSONObject doInBackground(Object[] params) {
         HttpURLConnection httpc = null; //http通信コネクター
         JSONObject json = null; //JSONオブジェクト
 
@@ -78,10 +80,10 @@ public class ReceiveJsonAsyncTask extends AsyncTask <Void,Void,JSONObject>{
             Log.e("error",e.toString());
         } catch (JSONException e) {
             Log.e("error",e.toString());
-        }finally {
-            //接続破棄
-            httpc.disconnect();
         }
+
+        //接続破棄
+        httpc.disconnect();
 
         return json;
     }

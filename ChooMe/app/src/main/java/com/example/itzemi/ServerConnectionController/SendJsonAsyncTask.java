@@ -46,6 +46,8 @@ public class SendJsonAsyncTask extends AsyncTask<String,Void,Void>{
             //POST送信用プロパティの設定
             httpc = (HttpURLConnection)url.openConnection();
             httpc.setDoOutput(true);
+            httpc.setRequestMethod("POST");
+            httpc.setRequestProperty("Content-Type","text/plain");
             httpc.setChunkedStreamingMode(0);
 
             //出力用のOutputStreamの生成
@@ -53,15 +55,18 @@ public class SendJsonAsyncTask extends AsyncTask<String,Void,Void>{
             //POST送信処理
             try {
                 //送信データの登録
-                out.write(params[0].getBytes("UTF-8"));
+
                 for(int i = 0;i < params.length;i++){
-                    Log.d("debug",params[1]);
+                    out.write(params[i].getBytes("UTF-8"));
+                    Log.d("debug",params[i]);
                 }
 
                 //送信
                 out.flush();
+                Log.d("debug",out.toString());
+
                 } catch (IOException e) {
-                e.printStackTrace();
+                    Log.e("error",e.toString());
             }finally {
                 //もしOutputStreamオブジェクトがある場合クローズ
                 if(out != null){
@@ -70,7 +75,7 @@ public class SendJsonAsyncTask extends AsyncTask<String,Void,Void>{
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e("error",e.toString());
         }finally {
             //接続破棄
             httpc.disconnect();

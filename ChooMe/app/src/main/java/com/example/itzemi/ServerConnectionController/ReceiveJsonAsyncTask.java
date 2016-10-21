@@ -1,4 +1,4 @@
-package MaikinngSoceFolder;
+package com.example.itzemi.ServerConnectionController;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -49,7 +49,6 @@ public class ReceiveJsonAsyncTask extends AsyncTask <Void,Void,JSONObject>{
         } catch (IOException e) {
             Log.e("error",e.toString());
         }
-
         try {
             //コネクションの結果を格納
             int status = httpc.getResponseCode();

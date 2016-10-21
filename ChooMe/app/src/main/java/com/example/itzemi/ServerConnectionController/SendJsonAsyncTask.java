@@ -1,4 +1,4 @@
-package MaikinngSoceFolder;
+package com.example.itzemi.ServerConnectionController;
 
 import android.os.AsyncTask;
 import android.util.Log;

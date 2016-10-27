@@ -7,8 +7,12 @@ package com.example.itzemi.DBController;
 //ユーザー情報を扱うクラス
 public class Userdata {
     //フィールド
-    private String e_mail,name,sex,hobbie;
-    private int id,Age;
+    private String e_mail;//メールアドレス
+    private String name;//名前
+    private String sex;//性別
+    private String hobbies;//趣味
+    private int id;//ユーザーID
+    private int Age;//年齢
 
     //コンストラクタ
     public Userdata(){
@@ -35,7 +39,7 @@ public class Userdata {
     public String getSex() {return sex;}
     public void setSex(String sex) {this.sex = sex;}
 
-    //hobbie
-    public String getHobbie() {return hobbie;}
-    public void setHobbie(String hobbie) {this.hobbie = hobbie;}
+    //hobbies
+    public String getHobbies() {return hobbies;}
+    public void setHobby(String hobbies) {this.hobbies = hobbies;}
 }

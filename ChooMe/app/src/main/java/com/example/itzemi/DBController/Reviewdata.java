@@ -7,8 +7,11 @@ package com.example.itzemi.DBController;
 //レビューを扱うクラス
 public class Reviewdata {
     //フィールド
-    private String goos_id,comment;
-    private int goods_id,user_id,rate,scene_id;
+    private String comment;//コメント
+    private int goods_id;//商品ID
+    private int user_id;//ユーザーID
+    private int rate;//評価(1～5)
+    private int scene_id;//シーンID
 
     //コンストラクタ
     public Reviewdata(){
@@ -16,8 +19,8 @@ public class Reviewdata {
     }
 
     //goods_id
-    public String getGoos_id() {return goos_id;}
-    public void setGoos_id(String goos_id) {this.goos_id = goos_id;}
+    public int getGoods_id() {return goods_id;}
+    public void setGoods_id(int goods_id) {this.goods_id = goods_id;}
 
     //user_id
     public int getUser() {return user_id;}

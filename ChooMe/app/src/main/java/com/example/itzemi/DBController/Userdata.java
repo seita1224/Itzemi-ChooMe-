@@ -13,33 +13,74 @@ public class Userdata {
     private String hobbies;//趣味
     private int id;//ユーザーID
     private int Age;//年齢
+    private String token;//トークン情報
 
     //コンストラクタ
-    public Userdata(){
+    public Userdata() {
 
     }
 
     //ID
-    public int getId() {return id;}
-    public void setId(int id) {this.id = id;}
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     //e-Mail
-    public String getEmail() {return e_mail;}
-    public void setEmail(String email) {this.e_mail = email;}
+    public String getEmail() {
+        return e_mail;
+    }
+
+    public void setEmail(String email) {
+        this.e_mail = email;
+    }
 
     //name
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     //age
-    public int getAge() {return Age;}
-    public void setAge(int age) {Age = age;}
+    public int getAge() {
+        return Age;
+    }
+
+    public void setAge(int age) {
+        Age = age;
+    }
 
     //sex
-    public String getSex() {return sex;}
-    public void setSex(String sex) {this.sex = sex;}
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
     //hobbies
-    public String getHobbies() {return hobbies;}
-    public void setHobby(String hobbies) {this.hobbies = hobbies;}
+    public String getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobby(String hobbies) {
+        this.hobbies = hobbies;
+    }
+
+//    public void paseData() {
+//        StringBuilder sb = new StringBuilder();
+//        sb.append(id);
+//        sb.append(e_mail);
+//        sb.append(name);
+//        sb.append(sex);
+//        sb.append(hobbies);
+//        sb.append(Age);
+//    }
 }

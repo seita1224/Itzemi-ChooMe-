@@ -23,15 +23,14 @@ import java.net.URL;
 public class ReceiveJsonAsyncTask extends AsyncTask <Void,Void,JSONObject>{
     private URL url;    //接続するURL
     private StringBuilder result = new StringBuilder();
-    private String flg = null;
+    private CallbackData callbackData;
 
     //---------------------------------コンスラクタ---------------------------------
 
     public ReceiveJsonAsyncTask(){  }
 
-    public ReceiveJsonAsyncTask(URL url,String flg) {
+    public ReceiveJsonAsyncTask(URL url) {
         this.url = url;
-        this.flg = flg;
     }
 
     //------------------------------------------------------------------------------
@@ -63,7 +62,7 @@ public class ReceiveJsonAsyncTask extends AsyncTask <Void,Void,JSONObject>{
                 //取得データの変換(1行ずつStringBuilderに格納)
                 while((line = BReader.readLine()) != null) {
                     result.append(line);
-                    Log.d("debug",line);
+                    Log.d("ReceiveJso..._doInB...",line);
                 }
 
                 //取得データをJsonに変換
@@ -90,17 +89,21 @@ public class ReceiveJsonAsyncTask extends AsyncTask <Void,Void,JSONObject>{
     protected void onPostExecute(JSONObject jo) {
         super.onPostExecute(jo);
         //表示
-        Log.d("debug",jo.toString());
+        Log.d("ReceiveJso..._onPost...",jo.toString());
+        callbackData.callBack(jo);
+    }
 
-        switch (flg) {
-            case "user":
-                //UserJsonを処理する場所
-            case "goods":
-                //GoodsJsonを処理する場所
-            case "review":
-                //ReviewJsonを処理する場所
-            case "ranking":
-                //RankingJsonを処理する場所
+    //コールバック処理セットメソッド
+    public void setOnCallBack(CallbackData cb){
+        callbackData = cb;
+    }
+
+    //コールバック用クラス
+    public static class CallbackData{
+        public void callBack(JSONObject jo){
         }
     }
+
 }
+
+

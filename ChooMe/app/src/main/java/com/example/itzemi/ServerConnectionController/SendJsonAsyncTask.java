@@ -57,7 +57,7 @@ public class SendJsonAsyncTask extends AsyncTask<String,Void,Void>{
                 //送信データの登録
                 for(int i = 0;i < str.length;i++){
                     out.write(str[i].getBytes("UTF-8"));
-                    Log.d("debug",str[i]);
+                    Log.d("SendJsonAs..._doIn...",str[i]);
                 }
 
                 //送信

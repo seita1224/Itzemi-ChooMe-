@@ -6,6 +6,9 @@ import android.util.Log;
 
 import com.example.itzemi.DBController.Goodsdata;
 import com.example.itzemi.DBController.Userdata;
+import com.example.itzemi.ServerConnectionController.ReceiveJsonAsyncTask.CallbackData;
+
+import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -19,44 +22,56 @@ public class ConecctionHelper {
     private SendJsonAsyncTask send = null;  //データ送信用の非同期処理クラス
     private ReceiveJsonAsyncTask receive = null;    //データ受信用の非同期処理クラス
     private URL url = null; //送受信先のURL
+    private JSONObject json;
     private Userdata user;
     private Goodsdata goods;
-    //データ受け渡し用のハンドラー
-    private Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            user = (Userdata)msg.obj;
-        }
-    };
 
+    //このJsonオブジェクトには何も帰ってきてない
+    public JSONObject jore(){
+//        Log.d("ConecctionHelper_jore",json.toString());
+        return json;
+    }
+
+    //-----------------------------受信-----------------------------
     //ユーザ情報受信
     public void receiveUserTask(){
         setUrl("");
-        receive = new ReceiveJsonAsyncTask(url,"user");
+        receive = new ReceiveJsonAsyncTask(url);
+        receive.setOnCallBack(new CallbackData(){
+            @Override
+            public void callBack(JSONObject jo) {
+                super.callBack(jo);
+                Log.d("Conecction.._receiveU..",jo.toString());
+                json = jo;
+            }
+        });
         receive.execute();
+        Log.d("ConecctionHelper_json",json.toString());
     }
 
     //商品情報受信
     public void receiveGoods(){
         setUrl("");
-        receive = new ReceiveJsonAsyncTask(url,"goods");
+        receive = new ReceiveJsonAsyncTask(url);
         receive.execute();
     }
 
     //ランキング情報の受信
     public void reciveRankingTask(){
         setUrl("");
-        receive = new ReceiveJsonAsyncTask(url,"ranking");
+        receive = new ReceiveJsonAsyncTask(url);
         receive.execute();
     }
 
     //レビュー情報の受信
     public void receiveReview(){
         setUrl("");
-        receive = new ReceiveJsonAsyncTask(url,"review");
+        receive = new ReceiveJsonAsyncTask(url);
         receive.execute();
     }
 
+
+    //-----------------------------送信-----------------------------
     //ユーザ情報送信
     public void sendUserTask(){
         setUrl("");
@@ -76,10 +91,10 @@ public class ConecctionHelper {
         setUrl("");
         send = new SendJsonAsyncTask();
         send.execute();
-    }
+}
 
     //送受信用URLにURLをセット
-    private void setUrl(String str){
+    public void setUrl(String str){
         try {
             url = new URL(str);
         } catch (MalformedURLException e) {

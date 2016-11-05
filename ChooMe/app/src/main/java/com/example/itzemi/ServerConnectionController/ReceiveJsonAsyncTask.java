@@ -4,8 +4,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.example.itzemi.DBController.Userdata;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,27 +18,23 @@ import java.net.URL;
  * Created by seita on 2016/10/20.
  */
 
-public class ReceiveJsonAsyncTask extends AsyncTask <Void,Void,JSONObject>{
+public class ReceiveJsonAsyncTask extends AsyncTask <Void,Void,JsonPase>{
     private URL url;    //接続するURL
-    private StringBuilder result = new StringBuilder();
-    private String flg = null;
+    private StringBuilder result = new StringBuilder(); //JSONにする前の文字列を保存するためのStringBuilder
 
     //---------------------------------コンスラクタ---------------------------------
 
     public ReceiveJsonAsyncTask(){  }
 
-    public ReceiveJsonAsyncTask(URL url,String flg) {
-        this.url = url;
-        this.flg = flg;
-    }
+    public ReceiveJsonAsyncTask(URL url) {this.url = url;}
 
     //------------------------------------------------------------------------------
 
     //非同期処理(メソッド)
     @Override
-    protected JSONObject doInBackground(Void... params) {
+    protected JsonPase doInBackground(Void... params) {
         HttpURLConnection httpc = null; //http通信コネクター
-        JSONObject jo = null;
+        JsonPase jp = null; //JSONオブジェクト
 
         try {
             //指定されたURLにコネクション開始
@@ -67,7 +61,7 @@ public class ReceiveJsonAsyncTask extends AsyncTask <Void,Void,JSONObject>{
                 }
 
                 //取得データをJsonに変換
-                jo = new JSONObject(result.toString());
+                jp = new JsonPase(result);
 
                 //読み込み作業終了
                 IReader.close();
@@ -77,30 +71,19 @@ public class ReceiveJsonAsyncTask extends AsyncTask <Void,Void,JSONObject>{
             Log.e("error",e.toString());
         } catch (IOException e) {
             Log.e("error",e.toString());
-        } catch (JSONException e) {
-            Log.e("error",e.toString());
-        } finally {
+        }finally {
             //接続破棄
             httpc.disconnect();
         }
-        return jo;
+
+        return jp;
     }
 
     @Override
-    protected void onPostExecute(JSONObject jo) {
-        super.onPostExecute(jo);
+    protected void onPostExecute(JsonPase jp) {
+        super.onPostExecute(jp);
         //表示
-        Log.d("debug",jo.toString());
+        Log.d("debug",jp.getJa().toString());
 
-        switch (flg) {
-            case "user":
-                //UserJsonを処理する場所
-            case "goods":
-                //GoodsJsonを処理する場所
-            case "review":
-                //ReviewJsonを処理する場所
-            case "ranking":
-                //RankingJsonを処理する場所
-        }
     }
 }

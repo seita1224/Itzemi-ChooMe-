@@ -36,9 +36,9 @@ public class SendJsonAsyncTask extends AsyncTask<String,Void,Void>{
     //------------------------------------------------------------------------------
 
 
-    //非同期処理(文字列送信してる)
+    //非同期処理
     @Override
-    protected Void doInBackground(String... str) {
+    protected Void doInBackground(String... params) {
         HttpURLConnection httpc = null; //Http通信用コネクター
         OutputStream out = null;    //出力用OutPutStream
 
@@ -55,9 +55,9 @@ public class SendJsonAsyncTask extends AsyncTask<String,Void,Void>{
             //POST送信処理
             try {
                 //送信データの登録
-                for(int i = 0;i < str.length;i++){
-                    out.write(str[i].getBytes("UTF-8"));
-                    Log.d("debug",str[i]);
+                for(int i = 0;i < params.length;i++){
+                    out.write(params[i].getBytes("UTF-8"));
+                    Log.d("debug",params[i]);
                 }
 
                 //送信
@@ -72,6 +72,7 @@ public class SendJsonAsyncTask extends AsyncTask<String,Void,Void>{
                     out.close();
                 }
             }
+
         } catch (IOException e) {
             Log.e("error",e.toString());
         }finally {

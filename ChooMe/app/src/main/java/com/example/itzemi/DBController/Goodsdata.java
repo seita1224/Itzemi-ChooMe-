@@ -17,7 +17,6 @@ public class Goodsdata{
     private String genre;//ジャンル
     private String scene;//シーン
     private String hobbies;//趣味
-    private String token;//トークン情報
 
 
     //コンストラクタ
@@ -56,18 +55,4 @@ public class Goodsdata{
     //getHobby
     public String getHobbies() {return hobbies;}
     public void setHobbies(String hobbies) {this.hobbies = hobbies;}
-
-
-//    public void paseData() {
-//        StringBuilder sb = new StringBuilder();
-//        sb.append(goods_id);
-//        sb.append(goods_name);
-//        sb.append(valuation);
-//        //sb.append(picture);
-//        sb.append(comment);
-//        sb.append(genre);
-//        sb.append(scene);
-//        sb.append(hobbies);
-//    }
 }
-

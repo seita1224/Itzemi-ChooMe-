@@ -37,6 +37,7 @@ public class ConnectionHelper {
             @Override
             public void callBack(JSONObject jo) {
                 connectionCallBack.receiveJson(jo);
+                Log.d("ConnectionHelper","CallBack");
             }
         });
         receive.execute();

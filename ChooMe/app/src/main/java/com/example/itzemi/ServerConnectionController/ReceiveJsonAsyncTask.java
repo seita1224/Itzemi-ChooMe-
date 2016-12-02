@@ -23,7 +23,7 @@ import java.net.URL;
 public class ReceiveJsonAsyncTask extends AsyncTask <Void,Void,JSONObject>{
     private URL url;    //接続するURL
     private StringBuilder result = new StringBuilder();
-    private CallbackData callbackData;
+    private AsyncCallBack asyncCallBack;
 
     //---------------------------------コンスラクタ---------------------------------
 
@@ -89,21 +89,13 @@ public class ReceiveJsonAsyncTask extends AsyncTask <Void,Void,JSONObject>{
     protected void onPostExecute(JSONObject jo) {
         super.onPostExecute(jo);
         //表示
-        Log.d("ReceiveJso..._onPost...",jo.toString());
-        callbackData.callBack(jo);
+        asyncCallBack.callBack(jo);
     }
 
     //コールバック処理セットメソッド
-    public void setOnCallBack(CallbackData cb){
-        callbackData = cb;
+    public void setCallBack(AsyncCallBack cb){
+        asyncCallBack = cb;
     }
-
-    //コールバック用クラス
-    public static class CallbackData{
-        public void callBack(JSONObject jo){
-        }
-    }
-
 }
 
 

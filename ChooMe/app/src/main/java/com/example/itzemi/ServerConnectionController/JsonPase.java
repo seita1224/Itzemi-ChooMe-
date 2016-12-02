@@ -1,10 +1,13 @@
 package com.example.itzemi.ServerConnectionController;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * Created by seita on 2016/10/24.
@@ -18,27 +21,47 @@ public class JsonPase {
     private StringBuilder sb = null;
 
     //コンストラクタ
-    //JSONObject
-    public JsonPase(JSONObject jo){this.jo = jo;}
-    //JSONArray
-    public JsonPase(JSONArray ja){this.ja = ja;}
+    //デフォルトコンストラクタ
+    public JsonPase(){}
+
     //StringBilder
     public JsonPase(StringBuilder sb){this.sb = sb;}
 
 
     //ランキングの文字列を返すメソッド
-    public String RankingJson(){
+    public ArrayList<Object> RankingJson(){
         //Jsonの情報保存用変数
-        sb = new StringBuilder();
-        //JSONArrayを格納する
-        for(int i = 0;i < ja.length();i++){
+        ArrayList<Object> jsonArray = new ArrayList<>();
+
+        //Jsonデータの準備
+        try {
+            //Jsonデータを生成
+            ja = new JSONArray(sb.toString());
+
+            //JSONArrayを格納する
+            for(int i = 0;i < ja.length();i++){
+                jsonArray.add(ja.get(i)); //型の
+            }
+        } catch (JSONException e) {
+            Log.e("C:JsonPase,M:Ranking...",e .toString());
         }
-        return null;
+        return jsonArray;
     }
 
     //ユーザーデータを返すメソッド
     public String UserJson(){
-        StringBuilder sb = new StringBuilder();
+        //Userデータの整形開始
+        try {
+            //JSONArrayの形に変える
+            ja = new JSONArray(sb.toString());
+
+            //Jsonデータ格納用にインスタンス生成
+            sb = new StringBuilder();
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

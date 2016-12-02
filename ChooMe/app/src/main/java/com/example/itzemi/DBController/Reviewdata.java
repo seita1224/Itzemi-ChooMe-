@@ -28,7 +28,6 @@ public class Reviewdata {
     public int getGoods_id() {
         return goods_id;
     }
-
     public void setGoods_id(int goods_id) {
         this.goods_id = goods_id;
     }
@@ -37,7 +36,6 @@ public class Reviewdata {
     public int getUser() {
         return user_id;
     }
-
     public void setUser(int user_id) {
         this.user_id = user_id;
     }
@@ -46,7 +44,6 @@ public class Reviewdata {
     public String getComment() {
         return comment;
     }
-
     public void setComment(String comment) {
         this.comment = comment;
     }
@@ -55,7 +52,6 @@ public class Reviewdata {
     public int getRate() {
         return rate;
     }
-
     public void setRate(int rate) {
         this.rate = rate;
     }
@@ -64,7 +60,6 @@ public class Reviewdata {
     public int getScene_id() {
         return scene_id;
     }
-
     public void setScene_id(int scene_id) {
         this.scene_id = scene_id;
     }

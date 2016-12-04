@@ -89,7 +89,7 @@ public class ReceiveJsonAsyncTask extends AsyncTask <Void,Void,JSONObject>{
     protected void onPostExecute(JSONObject jo) {
         super.onPostExecute(jo);
         //表示
-        asyncCallBack.callBack(jo);
+        asyncCallBack.callBack( jo);
     }
 
     //コールバック処理セットメソッド
